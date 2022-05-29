@@ -19,7 +19,7 @@ const BackpackList = () => {
         {backpacks &&
           backpacks.map((b) => (
             <div key={b.id}>
-              <BackpackCard id={b._id} name={b.name} userId={b.userId} />
+              <BackpackCard backpack={b} />
             </div>
           ))}
       </div>

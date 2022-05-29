@@ -7,19 +7,17 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 const BackpackCard = (props) => {
-  const [id, setId] = useState(props.id);
-  const [name, setName] = useState(props.name);
-  const [userId, setUserId] = useState(props.userId);
+  const [backpack, setBackpack] = useState(props.backpack);
 
   return (
     <Card sx={{ mb: 1, mt: 1 }}>
       <CardContent>
         <Typography variant="h6" component="div">
-          {name}
+          {backpack.name}
         </Typography>
       </CardContent>
       <CardActions>
-        <Link to={`/backpack/${id}`}>
+        <Link to={`/backpack/${backpack.id}`}>
           <Button>View</Button>
         </Link>
       </CardActions>

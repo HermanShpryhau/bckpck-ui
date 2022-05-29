@@ -5,7 +5,7 @@ import ItemCard from "../components/ItemCard";
 import { Container } from "@mui/material";
 
 const Backpack = () => {
-  let { id } = useParams();
+  const { id } = useParams();
   const [items, setItems] = useState();
 
   useEffect(() => {

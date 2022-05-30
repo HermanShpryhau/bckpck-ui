@@ -51,7 +51,7 @@ const BackpackList = (props) => {
         <Dialog
           open={addDialogOpen}
           onClose={onAddDialogClose}
-          fullWidth="true"
+          fullWidth={true}
         >
           <DialogTitle>New Backpack</DialogTitle>
           <DialogContent sx={{ display: "flex", flexDirection: "column" }}>

@@ -21,13 +21,19 @@ const Backpack = (props) => {
 
   useEffect(() => {
     axios.get(`${BASE_URL}/backpacks/${id}`).then((res) => {
+      console.log(res.data);
       setBackpack(res.data);
-      setTitle(backpack.name);
     });
     axios
       .get(`${BASE_URL}/backpacks/${id}/items`)
       .then((res) => setItems(res.data));
-  }, []);
+  }, [id]);
+
+  useEffect(() => {
+    if (backpack) {
+      setTitle(backpack.name);
+    }
+  }, [backpack, setTitle]);
 
   const onAddDialogOpen = () => {
     setAddDialogOpen(true);
@@ -55,7 +61,7 @@ const Backpack = (props) => {
         <Dialog
           open={addDialogOpen}
           onClose={onAddDialogClose}
-          fullWidth="true"
+          fullWidth={true}
         >
           <DialogTitle>New Item</DialogTitle>
           <DialogContent sx={{ display: "flex", flexDirection: "column" }}>

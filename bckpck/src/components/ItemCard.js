@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
+import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardActions from "@mui/material/CardActions";
@@ -9,7 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { Box } from "@mui/material";
+import { BASE_URL } from "../api/api";
 
 const ItemCard = (props) => {
   const [item, setItem] = useState(props.item);
@@ -24,16 +25,12 @@ const ItemCard = (props) => {
 
   const inc = () => {
     item.amount += 1;
-    axios
-      .put("http://127.0.0.1:8080/items", item)
-      .then((res) => setItem(res.data));
+    axios.put(`${BASE_URL}/items`, item).then((res) => setItem(res.data));
   };
 
   const dec = () => {
     item.amount -= 1;
-    axios
-      .put("http://127.0.0.1:8080/items", item)
-      .then((res) => setItem(res.data));
+    axios.put(`${BASE_URL}/items`, item).then((res) => setItem(res.data));
   };
 
   return (
@@ -50,18 +47,27 @@ const ItemCard = (props) => {
         <Typography variant="body" component="div">
           {item.description}
         </Typography>
-        <CardActions disableSpacing>
-          <IconButton size="large" sx={{ m: 1 }} onClick={dec}>
-            <RemoveCircleOutlineIcon />
-          </IconButton>
+        <CardActions sx={{ justifyContent: "center" }} disableSpacing>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <IconButton size="large" sx={{ m: 1 }} onClick={dec}>
+              <RemoveCircleOutlineIcon />
+            </IconButton>
 
-          <Typography variant="body" fontSize={18} align="center">
-            {item.amount}
-          </Typography>
+            <Typography variant="body" fontSize={18} align="center">
+              {item.amount}
+            </Typography>
 
-          <IconButton size="large" sx={{ m: 1 }} onClick={inc}>
-            <AddCircleOutlineIcon />
-          </IconButton>
+            <IconButton fontSize="large" sx={{ m: 1 }} onClick={inc}>
+              <AddCircleOutlineIcon />
+            </IconButton>
+          </Box>
         </CardActions>
       </CardContent>
     </Card>

@@ -17,7 +17,7 @@ const BackpackCard = (props) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Link to={`/backpack/${backpack.id}`}>
+        <Link to={`/backpack/${backpack._id}`}>
           <Button>View</Button>
         </Link>
       </CardActions>
